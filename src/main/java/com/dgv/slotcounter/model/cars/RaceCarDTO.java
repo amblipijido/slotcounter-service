@@ -1,8 +1,12 @@
-package com.dgv.slotcounter.model;
+package com.dgv.slotcounter.model.cars;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RaceCarDTO {
 
     private Long id;

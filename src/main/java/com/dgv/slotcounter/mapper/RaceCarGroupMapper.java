@@ -1,9 +1,11 @@
 package com.dgv.slotcounter.mapper;
 
 import com.dgv.slotcounter.entity.RaceCarGroup;
-import com.dgv.slotcounter.model.RaceCarGroupDTO;
-import com.dgv.slotcounter.model.RaceCarGroupSimpleDTO;
+import com.dgv.slotcounter.model.cars.RaceCarGroupDTO;
+import com.dgv.slotcounter.model.cars.RaceCarGroupSimpleDTO;
 import org.mapstruct.Mapper;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RaceCarGroupMapper {
@@ -11,4 +13,5 @@ public interface RaceCarGroupMapper {
     RaceCarGroup fromSimpleModelToEntity(RaceCarGroupSimpleDTO model);
     RaceCarGroupDTO fromEntityToModel(RaceCarGroup entity);
     RaceCarGroup fromModelToEntity(RaceCarGroupDTO model);
+    List<RaceCarGroupSimpleDTO> fromEntityListToSimpleModelList(List<RaceCarGroup> raceCarGroupList);
 }

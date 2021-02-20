@@ -1,10 +1,14 @@
-package com.dgv.slotcounter.model;
+package com.dgv.slotcounter.model.races;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RaceSimpleDTO {
 
     private Long id;
