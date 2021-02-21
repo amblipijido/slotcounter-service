@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,12 +36,12 @@ public class DriversController {
     }
 
     @PostMapping("/team/add")
-    public TeamSimpleDTO addNewTeam(@RequestBody TeamSimpleDTO teamSimpleDTO) {
+    public TeamSimpleDTO addNewTeam(@Valid  @RequestBody TeamSimpleDTO teamSimpleDTO) {
         return teamService.addOrUpdateTeam(teamSimpleDTO);
     }
 
     @PutMapping("/team/update")
-    public TeamSimpleDTO updateTeam(@RequestBody TeamSimpleDTO teamSimpleDTO) {
+    public TeamSimpleDTO updateTeam(@Valid @RequestBody TeamSimpleDTO teamSimpleDTO) {
         return teamService.addOrUpdateTeam(teamSimpleDTO);
     }
 
@@ -75,12 +76,12 @@ public class DriversController {
     }
 
     @PostMapping("/team/{teamId}/driver/add")
-    public RaceDriverSimpleDTO addNewDriver(@PathVariable Long teamId, @RequestBody RaceDriverSimpleDTO raceDriverSimpleDTO) {
+    public RaceDriverSimpleDTO addNewDriver(@PathVariable Long teamId, @Valid @RequestBody RaceDriverSimpleDTO raceDriverSimpleDTO) {
         return raceDriverService.addOrUpdateRaceDriver(raceDriverSimpleDTO, teamId);
     }
 
     @PutMapping("/team/{teamId}/driver/update")
-    public RaceDriverSimpleDTO updateDrive(@PathVariable Long teamId, @RequestBody RaceDriverSimpleDTO raceDriverSimpleDTO) {
+    public RaceDriverSimpleDTO updateDrive(@PathVariable Long teamId, @Valid @RequestBody RaceDriverSimpleDTO raceDriverSimpleDTO) {
         return raceDriverService.addOrUpdateRaceDriver(raceDriverSimpleDTO, teamId);
     }
 }

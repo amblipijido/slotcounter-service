@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +31,12 @@ public class SpeedWayController {
     }
 
     @PostMapping("/speed-way/add")
-    public SpeedWayDTO addSpeedWay(@RequestBody SpeedWayDTO speedWayDTO) {
+    public SpeedWayDTO addSpeedWay(@Valid  @RequestBody SpeedWayDTO speedWayDTO) {
         return speedWayService.addOrUpdateSpeedWay(speedWayDTO);
     }
 
     @PutMapping("/speed-way/update")
-    public SpeedWayDTO updateSpeedWay(@RequestBody SpeedWayDTO speedWayDTO) {
+    public SpeedWayDTO updateSpeedWay(@Valid @RequestBody SpeedWayDTO speedWayDTO) {
         return speedWayService.addOrUpdateSpeedWay(speedWayDTO);
     }
 

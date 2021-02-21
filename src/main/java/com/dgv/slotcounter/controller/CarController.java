@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +25,12 @@ public class CarController {
     private RaceCarService raceCarService;
 
     @PostMapping("/group/{groupId}/car/add")
-    public RaceCarSimpleDTO addNewRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
+    public RaceCarSimpleDTO addNewRaceCar(@Valid @RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
         return raceCarService.addOrUpdateRaceCar(newRaceCar, groupId);
     }
 
     @PutMapping("/group/{groupId}/car/update")
-    public RaceCarSimpleDTO updateRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
+    public RaceCarSimpleDTO updateRaceCar(@Valid @RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
         return raceCarService.addOrUpdateRaceCar(newRaceCar, groupId);
     }
 
@@ -54,12 +55,12 @@ public class CarController {
     }
 
     @PostMapping("/group/add")
-    public RaceCarGroupSimpleDTO addNewRaceCarGroup(@RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
+    public RaceCarGroupSimpleDTO addNewRaceCarGroup(@Valid @RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
         return raceCarGroupService.addOrUpdateRaceCarGroup(newRaceCarGroup);
     }
 
     @PutMapping("/group/update")
-    public RaceCarGroupSimpleDTO updateRaceCarGroup(@RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
+    public RaceCarGroupSimpleDTO updateRaceCarGroup(@Valid @RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
         return raceCarGroupService.addOrUpdateRaceCarGroup(newRaceCarGroup);
     }
 
