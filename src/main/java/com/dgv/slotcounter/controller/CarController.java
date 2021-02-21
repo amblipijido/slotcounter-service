@@ -15,41 +15,40 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/cars-management")
 public class CarController {
     @Autowired
     private RaceCarGroupService raceCarGroupService;
     @Autowired
     private RaceCarService raceCarService;
 
-    @PostMapping
-    public RaceCarSimpleDTO addNewRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @RequestParam Long groupId) {
+    @PostMapping("/group/{groupId}/car/add")
+    public RaceCarSimpleDTO addNewRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
         return raceCarService.addOrUpdateRaceCar(newRaceCar, groupId);
     }
 
-    @PutMapping
-    public RaceCarSimpleDTO updateRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @RequestParam Long groupId) {
+    @PutMapping("/group/{groupId}/car/update")
+    public RaceCarSimpleDTO updateRaceCar(@RequestBody RaceCarSimpleDTO newRaceCar, @PathVariable Long groupId) {
         return raceCarService.addOrUpdateRaceCar(newRaceCar, groupId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/car/{id}")
     public RaceCarDTO findCarById(@PathVariable Long id) {
         return Optional.ofNullable(raceCarService.findById(id))
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Foo Not Found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car Not Found"));
     }
 
-    @GetMapping("/all")
+    @GetMapping("/car/all")
     public List<RaceCarSimpleDTO> findAllCars() {
         return raceCarService.findAllRaceCars();
     }
 
-    @PostMapping("/group")
+    @PostMapping("/group/add")
     public RaceCarGroupSimpleDTO addNewRaceCarGroup(@RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
         return raceCarGroupService.addOrUpdateRaceCarGroup(newRaceCarGroup);
     }
 
-    @PutMapping("/group")
+    @PutMapping("/group/update")
     public RaceCarGroupSimpleDTO updateRaceCarGroup(@RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
         return raceCarGroupService.addOrUpdateRaceCarGroup(newRaceCarGroup);
     }
@@ -57,8 +56,7 @@ public class CarController {
     @GetMapping("/group/{id}")
     public RaceCarGroupDTO findRaceCarGroupById(@PathVariable Long id) {
         return Optional.ofNullable(raceCarGroupService.findById(id))
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Foo Not Found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Group Not Found"));
     }
 
     @GetMapping("/group/all")
