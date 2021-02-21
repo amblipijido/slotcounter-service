@@ -37,4 +37,9 @@ public class RaceCarGroupServiceImpl implements RaceCarGroupService {
         RaceCarGroup raceCarGroup = raceCarGroupRepository.findById(id).orElse(null);
         return raceCarGroupMapper.fromEntityToModel(raceCarGroup);
     }
+
+    @Override
+    public void deleteGroupById(Long id) {
+        raceCarGroupRepository.deleteById(id);
+    }
 }

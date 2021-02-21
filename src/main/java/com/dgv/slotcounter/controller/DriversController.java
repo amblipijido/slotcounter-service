@@ -7,6 +7,7 @@ import com.dgv.slotcounter.model.drivers.TeamSimpleDTO;
 import com.dgv.slotcounter.service.RaceDriverService;
 import com.dgv.slotcounter.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -43,6 +44,15 @@ public class DriversController {
         return teamService.addOrUpdateTeam(teamSimpleDTO);
     }
 
+    @DeleteMapping("/team/{id}/delete")
+    public void deleteTeam(@PathVariable Long id) {
+        try {
+            teamService.deleteTeamById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
     @GetMapping("/driver/all")
     public List<RaceDriverSimpleDTO> getAllDrivers() {
         return raceDriverService.findAllRaceDrivers();
@@ -52,6 +62,16 @@ public class DriversController {
     public RaceDriverDTO findDriverById(@PathVariable Long id) {
         return Optional.ofNullable(raceDriverService.findById(id))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Driver Not Found"));
+    }
+
+    @DeleteMapping("/driver/{id}/delete")
+    public void deleteRaceDriver(@PathVariable Long id) {
+        try {
+            raceDriverService.deleteRaceDriver(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+
     }
 
     @PostMapping("/team/{teamId}/driver/add")

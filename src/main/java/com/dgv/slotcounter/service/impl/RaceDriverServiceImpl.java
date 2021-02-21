@@ -23,10 +23,10 @@ public class RaceDriverServiceImpl implements RaceDriverService {
     }
 
     @Override
-    public RaceDriverSimpleDTO addOrUpdateRaceDriver(RaceDriverSimpleDTO raceCarGroup, Long teamId) {
+    public RaceDriverSimpleDTO addOrUpdateRaceDriver(RaceDriverSimpleDTO raceDriverSimpleDTO, Long teamId) {
         Team team = new Team();
         team.setId(teamId);
-        RaceDriver raceDriver = mapper.fromSimpleModelToEntity(raceCarGroup);
+        RaceDriver raceDriver = mapper.fromSimpleModelToEntity(raceDriverSimpleDTO);
         raceDriver.setTeam(team);
         return mapper.fromEntityToSimpleModel(repository.save(raceDriver));
     }
@@ -40,5 +40,10 @@ public class RaceDriverServiceImpl implements RaceDriverService {
     public RaceDriverDTO findById(Long id) {
         RaceDriver raceDriver = repository.findById(id).orElse(null);
         return mapper.fromEntityToModel(raceDriver);
+    }
+
+    @Override
+    public void deleteRaceDriver(Long driverId) {
+        repository.deleteById(driverId);
     }
 }

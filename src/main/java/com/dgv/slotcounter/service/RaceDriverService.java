@@ -10,4 +10,5 @@ public interface RaceDriverService {
     RaceDriverSimpleDTO addOrUpdateRaceDriver(RaceDriverSimpleDTO raceCarGroup, Long teamId);
     List<RaceDriverSimpleDTO> findAllRaceDrivers();
     RaceDriverDTO findById(Long id);
+    void deleteRaceDriver(Long driverId);
 }

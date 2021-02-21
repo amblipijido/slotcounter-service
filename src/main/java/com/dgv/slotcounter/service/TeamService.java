@@ -10,4 +10,5 @@ public interface TeamService {
     TeamSimpleDTO addOrUpdateTeam(TeamSimpleDTO teamSimpleDTO);
     List<TeamSimpleDTO> findAllTeams();
     TeamDTO findById(Long id);
+    void deleteTeamById(Long id);
 }

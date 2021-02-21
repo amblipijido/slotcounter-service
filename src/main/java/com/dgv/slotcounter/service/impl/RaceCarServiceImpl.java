@@ -41,4 +41,9 @@ public class RaceCarServiceImpl implements RaceCarService {
         RaceCar raceCar = raceCarRepository.findById(id).orElse(null);
         return raceCarMapper.fromEntityToModel(raceCar);
     }
+
+    @Override
+    public void deleteCarById(Long id) {
+        raceCarRepository.deleteById(id);
+    }
 }

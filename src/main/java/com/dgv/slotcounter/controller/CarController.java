@@ -7,6 +7,7 @@ import com.dgv.slotcounter.model.cars.RaceCarSimpleDTO;
 import com.dgv.slotcounter.service.RaceCarGroupService;
 import com.dgv.slotcounter.service.RaceCarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -38,6 +39,15 @@ public class CarController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car Not Found"));
     }
 
+    @DeleteMapping("/car/{id}/delete")
+    public void deleteCarById(@PathVariable Long id) {
+        try {
+            raceCarService.deleteCarById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
     @GetMapping("/car/all")
     public List<RaceCarSimpleDTO> findAllCars() {
         return raceCarService.findAllRaceCars();
@@ -51,6 +61,15 @@ public class CarController {
     @PutMapping("/group/update")
     public RaceCarGroupSimpleDTO updateRaceCarGroup(@RequestBody RaceCarGroupSimpleDTO newRaceCarGroup) {
         return raceCarGroupService.addOrUpdateRaceCarGroup(newRaceCarGroup);
+    }
+
+    @DeleteMapping("/group/{id}/delete")
+    public void deleteGroupById(@PathVariable Long id) {
+        try {
+            raceCarGroupService.deleteGroupById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
     @GetMapping("/group/{id}")

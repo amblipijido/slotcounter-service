@@ -37,4 +37,9 @@ public class TeamServiceImpl implements TeamService {
         Team team = teamRepository.findById(id).orElse(null);
         return teamMapper.fromEntityToModel(team);
     }
+
+    @Override
+    public void deleteTeamById(Long id) {
+        teamRepository.deleteById(id);
+    }
 }
