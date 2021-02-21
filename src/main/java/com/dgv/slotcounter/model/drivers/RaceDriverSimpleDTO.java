@@ -2,17 +2,18 @@ package com.dgv.slotcounter.model.drivers;
 
 import lombok.*;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TeamDTO {
+public class RaceDriverSimpleDTO {
 
     private Long id;
     private String name;
-    private String description;
-    private List<RaceDriverSimpleDTO> raceDrivers;
+    private String surname;
+    private String alias;
+    private LocalDate birthday;
 }

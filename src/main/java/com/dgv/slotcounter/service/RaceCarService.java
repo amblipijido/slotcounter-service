@@ -10,4 +10,5 @@ public interface RaceCarService {
     RaceCarSimpleDTO addOrUpdateRaceCar(RaceCarSimpleDTO raceCarGroup, Long groupId);
     List<RaceCarSimpleDTO> findAllRaceCars();
     RaceCarDTO findById(Long id);
+    void deleteCarById(Long id);
 }
