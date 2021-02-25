@@ -2,6 +2,8 @@ package com.dgv.slotcounter.model.cars;
 
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -10,6 +12,8 @@ import lombok.*;
 public class RaceCarGroupSimpleDTO {
 
     private Long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String description;
 }

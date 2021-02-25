@@ -4,6 +4,7 @@ import com.dgv.slotcounter.model.cars.RaceCarDTO;
 import com.dgv.slotcounter.model.drivers.RaceDriverDTO;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class RaceDTO {
     private Integer lapsToFinish;
     private Long timeToFinish;
     private List<LapDTO> laps;
+    @NotNull
     private SpeedWayDTO speedWay;
+    @NotNull
     private LocalDateTime raceDate;
 }
