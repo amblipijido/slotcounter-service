@@ -1,0 +1,39 @@
+
+title Slotcounter Application
+
+actor User
+
+bottomparticipants
+
+participant Angular Client
+participant Arduino
+participant Java service
+
+database Database
+
+
+User->Angular Client:Ask for start race
+
+Angular Client->Java service: Start race event
+Java service->Arduino: Start race event
+Java service->Database:Save new Race
+
+Arduino->Java service: Lap detected
+Java service->Database: Add lap to race
+Java service->Java service: Calculate remaining
+group if Last Lap or time over
+Java service->Arduino: Race ended
+end 
+
+group Cancel in progress race
+User->Angular Client: Ask for cancel the race
+Angular Client->Arduino: Send cancel race event
+Arduino->Arduino: Cancel Race
+Angular Client->Java service: Send cancel race event
+group If delete race data = true
+Java service->Database: Rollback data
+end
+end 
+
+Java service->Angular Client: Send race status
+Angular Client->User: See updated info

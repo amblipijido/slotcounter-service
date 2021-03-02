@@ -31,6 +31,4 @@ public class LapDTO {
     @Positive
     @NotNull
     private Integer number;
-    @NotNull
-    private LocalDateTime lapDate;
 }

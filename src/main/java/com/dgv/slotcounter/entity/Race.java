@@ -1,5 +1,6 @@
 package com.dgv.slotcounter.entity;
 
+import com.dgv.slotcounter.model.races.RaceType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -29,4 +30,8 @@ public class Race {
     @JoinColumn(name = "speed_way_id")
     private SpeedWay speedWay;
     private LocalDateTime raceDate;
+    @OneToMany(mappedBy = "race")
+    private List<RaceResult> raceResult;
+    @Enumerated(EnumType.STRING)
+    private RaceType raceType;
 }

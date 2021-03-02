@@ -12,6 +12,9 @@ public class RaceResult {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
+    @JoinColumn(name = "race_id")
+    private Race race;
+    @ManyToOne
     @JoinColumn(name = "race_car_id")
     private RaceCar raceCar;
     @ManyToOne

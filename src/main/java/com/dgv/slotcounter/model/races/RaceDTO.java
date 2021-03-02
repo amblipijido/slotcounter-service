@@ -25,4 +25,5 @@ public class RaceDTO {
     private SpeedWayDTO speedWay;
     @NotNull
     private LocalDateTime raceDate;
+    private RaceType raceType;
 }
